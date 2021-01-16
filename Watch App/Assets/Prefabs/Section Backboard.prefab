@@ -406,7 +406,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4803759536639049008}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3857955692223939470}
+        m_MethodName: ResetStopwatch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7131908206896017043
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +689,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock - Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8769333039704520540, guid: e9c8cc4d1e217444da75bc747176d7ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c8cc4d1e217444da75bc747176d7ad, type: 3}
 --- !u!114 &3723426255813996441 stripped
@@ -884,12 +900,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c8cc4d1e217444da75bc747176d7ad, type: 3}
---- !u!224 &3014123998310568639 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3816303895744211058, guid: e9c8cc4d1e217444da75bc747176d7ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 2099361197908163277}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6551879383393041570 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5174247255881090671, guid: e9c8cc4d1e217444da75bc747176d7ad,
@@ -902,6 +912,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3014123998310568639 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3816303895744211058, guid: e9c8cc4d1e217444da75bc747176d7ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 2099361197908163277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3014974596406675596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1038,6 +1054,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Clock Section
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638567901860591108, guid: d871685d380bc65438a0ae5c4ab1ba04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d871685d380bc65438a0ae5c4ab1ba04, type: 3}
@@ -1193,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 8041662382057952545, guid: 0ecda835307923c49b3cd65558891038,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ecda835307923c49b3cd65558891038, type: 3}
@@ -1203,6 +1224,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3784222797383423152}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3857955692223939470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 76126708982159166, guid: 0ecda835307923c49b3cd65558891038,
+    type: 3}
+  m_PrefabInstance: {fileID: 3784222797383423152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6565680641660600721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0327e57a8de5f4fa8dc77e53c9c443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3038636602278218836 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2211027132219545828, guid: 0ecda835307923c49b3cd65558891038,
@@ -1346,8 +1379,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer - Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8769333039704520540, guid: e9c8cc4d1e217444da75bc747176d7ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c8cc4d1e217444da75bc747176d7ad, type: 3}
+--- !u!224 &7889436606661982254 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3816303895744211058, guid: e9c8cc4d1e217444da75bc747176d7ad,
+    type: 3}
+  m_PrefabInstance: {fileID: 6452203506354425948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2180950103435253299 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5174247255881090671, guid: e9c8cc4d1e217444da75bc747176d7ad,
@@ -1360,12 +1404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7889436606661982254 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3816303895744211058, guid: e9c8cc4d1e217444da75bc747176d7ad,
-    type: 3}
-  m_PrefabInstance: {fileID: 6452203506354425948}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7727278581754364070
 PrefabInstance:
   m_ObjectHideFlags: 0

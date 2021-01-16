@@ -8,36 +8,62 @@ namespace WatchApp
 {
     public class ClockManager : MonoBehaviour
     {
-        public WatchManager m_manager;
+        [Tooltip("The WatchManager that is managing this clock")] public WatchManager m_manager;
 
         [Header("Settings")]
-        public GameObject m_clockSection;
-        public GameObject m_settingsSection;
-        public Button m_settingsButton;
-        public Button m_settingsExitButton;
+        [Tooltip("The main clock section (not the root and not the settings section)")] public GameObject m_clockSection;
+        [Tooltip("The setting panel")] public GameObject m_settingsSection;
+        [Tooltip("The button that will take you to the settings section")] public Button m_settingsButton;
+        [Tooltip("The button that will take you out of the settings section")] public Button m_settingsExitButton;
         [Space]
-        public TMP_Dropdown m_dateFormatDropdown;
+        [Tooltip("The dropdown that has options for the date format")] public TMP_Dropdown m_dateFormatDropdown;
 
         [Header("Text")]
-        public TextMeshProUGUI m_timeText;
-        public TextMeshProUGUI m_dateText;
+        [Tooltip("The text that displays the time")] public TextMeshProUGUI m_timeText;
+        [Tooltip("The text that displays the date")] public TextMeshProUGUI m_dateText;
 
         [Header("Clock Hands")]
-        public Transform m_handAnchor;
+        [Tooltip("The centre of the clock face to anchor the hands to")] public Transform m_handAnchor;
         [Space]
-        public Transform m_hourHand;
-        public Transform m_minuteHand;
+        [Tooltip("The hand that displays the hour on the clock")] public Transform m_hourHand;
+        [Tooltip("The hand that displays the minute on the clock")] public Transform m_minuteHand;
         [Space]
-        public Transform m_secondHand;
-        public Transform m_secondHandImposter;
+        [Tooltip("The hand that displays the second on the clock (Either use like the other hands or with an imposter)")] public Transform m_secondHand;
+        [Tooltip("The actual icon for the second hand, this is for something that isn't directly attached to the centre point")] public Transform m_secondHandImposter;
 
         private System.DateTime m_currentDateTime;
         private bool m_is24Format = false;
 
         private string m_dateFormat = "dd / MM / yy";
 
+        // For optimisation instead of calling Vector2.Distance(...) several time per frame
+        private float m_hourDist = 0;
+        private float m_minDist = 0;
+        private float m_secDist = 0;
+
         private void Start()
         {
+            if (m_handAnchor)
+            {
+                if (m_hourHand)
+                {
+                    m_hourDist = Vector2.Distance(m_hourHand.position, m_handAnchor.position);
+                }
+                if (m_minuteHand)
+                {
+                    m_minDist = Vector2.Distance(m_minuteHand.position, m_handAnchor.position);
+                }
+                if (m_secondHandImposter)
+                {
+                    m_secDist = Vector2.Distance(m_secondHandImposter.position, m_handAnchor.position);
+                }
+                else if (m_secondHand)
+                {
+                    m_secDist = Vector2.Distance(m_secondHand.position, m_handAnchor.position);
+                }
+            }
+
+            // Set up the settings button to turn on the panel
             WatchManager.InitButton(m_settingsButton, () =>
             {
                 if (m_settingsSection)
@@ -50,6 +76,7 @@ namespace WatchApp
                 }
             });
 
+            // Set up the settings exit button to turn off the panel
             WatchManager.InitButton(m_settingsExitButton, () =>
             {
                 if (m_settingsSection)
@@ -62,6 +89,7 @@ namespace WatchApp
                 }
             });
 
+            // Set up the callback for the date dropdown to update the formatting
             if (m_dateFormatDropdown)
             {
                 m_dateFormatDropdown.onValueChanged.AddListener((int index) =>
@@ -91,6 +119,9 @@ namespace WatchApp
 
         public void UpdateDateTimeText()
         {
+            // == Optimisations ==
+            // - Could optimise so that I'm not the text every frame
+            // - Could store the time formatting similarly to the way I'm doing date formating
             if (m_timeText)
             {
                 // Use string formatting to get 24hour or 12hour time
@@ -114,16 +145,15 @@ namespace WatchApp
                 int _min = m_currentDateTime.Minute;
                 int _sec = m_currentDateTime.Second;
 
-                MoveHand(m_hourHand, _hour, 12);
-                MoveHand(m_minuteHand, _min, 60);
-                MoveHand(m_secondHand, _sec, 60);
+                // Calculate the position and direction of all the time hands
+                MoveHand(m_hourHand, m_handAnchor, _hour, 12, m_hourDist);
+                MoveHand(m_minuteHand, m_handAnchor, _min, 60, m_minDist);
+                MoveHand(m_secondHand, m_handAnchor, _sec, 60, m_secDist);
 
                 if (m_secondHand && m_secondHandImposter)
                 {
-                    float _dist = Vector2.Distance(m_secondHandImposter.position, m_handAnchor.position);
-
                     m_secondHand.position = m_handAnchor.position;
-                    m_secondHandImposter.position = m_handAnchor.position + (m_secondHand.up * _dist);
+                    m_secondHandImposter.position = m_handAnchor.position + (m_secondHand.up * m_secDist);
                 }
             }
         }
@@ -134,16 +164,15 @@ namespace WatchApp
         /// <param name="handTrans">The hand to change directions</param>
         /// <param name="time">The amount of time into this hand's cycle</param>
         /// <param name="maxTime">The max time for this hand's cycle (60 sec for a min)</param>
-        void MoveHand(Transform handTrans, int time, int maxTime)
+        public static void MoveHand(Transform handTrans, Transform anchor, int time, int maxTime, float dist)
         {
-            if (handTrans)
+            if (handTrans && anchor)
             {
-                float _dist = Vector2.Distance(handTrans.position, m_handAnchor.position);
                 float _timeRatio = time / (float)maxTime;
 
                 // Multiply angle by -1 because it goes round the circle left side not right
                 handTrans.eulerAngles = new Vector3(0, 0, 360 * _timeRatio * -1);
-                handTrans.position = m_handAnchor.position + (handTrans.up * _dist);
+                handTrans.position = anchor.position + (handTrans.up * dist);
             }
         }
     }
