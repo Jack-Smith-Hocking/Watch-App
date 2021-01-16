@@ -10,9 +10,11 @@ namespace WatchApp
     {
         [Tooltip("The WatchManager that is managing this clock")] public WatchManager m_manager;
 
-        [Header("Settings")]
+        [Header("Sections")]
         [Tooltip("The main clock section (not the root and not the settings section)")] public GameObject m_clockSection;
         [Tooltip("The setting panel")] public GameObject m_settingsSection;
+
+        [Header("Settings")]
         [Tooltip("The button that will take you to the settings section")] public Button m_settingsButton;
         [Tooltip("The button that will take you out of the settings section")] public Button m_settingsExitButton;
         [Space]
