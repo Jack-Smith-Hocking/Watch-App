@@ -401,6 +401,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Section Backboard (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4060832017400031742, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7518130735644934527, guid: 990873d9e489e48448689b62100c980c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -505,6 +535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 845124866133417185, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_secondhandSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3014123998310568639, guid: 990873d9e489e48448689b62100c980c,
         type: 3}
@@ -655,6 +690,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Section Backboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7518130735644934527, guid: 990873d9e489e48448689b62100c980c,
         type: 3}
@@ -1214,6 +1274,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Section Backboard (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060832017400031742, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720497510034278899, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967678294321764363, guid: 990873d9e489e48448689b62100c980c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7518130735644934527, guid: 990873d9e489e48448689b62100c980c,
         type: 3}
