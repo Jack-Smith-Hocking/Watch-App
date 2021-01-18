@@ -13,31 +13,31 @@ namespace WatchApp
         public AudioSource m_audioSource;
 
         [Header("Sections")]
-        public GameObject m_inputSection;
-        public GameObject m_timerSection;
+        [Tooltip("The section to input timer values")] public GameObject m_inputSection;
+        [Tooltip("The section to display the timer")] public GameObject m_timerSection;
 
         [Header("Input Section")]
-        public Button m_startButton;
-        public Button m_resetButton;
+        [Tooltip("The button to start the timer")] public Button m_startButton;
+        [Tooltip("The button to reset the timer")] public Button m_resetButton;
         [Space]
-        public TMP_InputField m_hourInputField;
-        public TMP_InputField m_minInputField;
-        public TMP_InputField m_secInputField;
+        [Tooltip("The InputField to get the hours for the timer")] public TMP_InputField m_hourInputField;
+        [Tooltip("The InputField to get the minutes for the timer")] public TMP_InputField m_minInputField;
+        [Tooltip("The InputField to get the seconds for the timer")] public TMP_InputField m_secInputField;
 
         [Header("Timer Section")]
-        public Button m_playButton;
-        public Button m_pauseButton;
-        public Button m_stopButton;
+        [Tooltip("The button to play the timer")] public Button m_playButton;
+        [Tooltip("The button to pause the timer")] public Button m_pauseButton;
+        [Tooltip("The button to stop the timer")] public Button m_stopButton;
         [Space]
-        public TextMeshProUGUI m_timerText;
+        [Tooltip("The text to display the timer")] public TextMeshProUGUI m_timerText;
 
         [Header("Fill Image - Timer Section")]
-        public Image m_timerFillImage;
-        public float m_fillSpeed = 10;
+        [Tooltip("The fillable image that goes down with the timer")] public Image m_timerFillImage;
+        [Tooltip("How quickly the image fill should interpolate its fill")] public float m_fillSpeed = 10;
 
         [Header("On Timer End")]
-        public UnityEvent m_onTimerEndEvent;
-        public AudioClip m_timerEndClip;
+        [Tooltip("Event to invoke when the timer completes")] public UnityEvent m_onTimerEndEvent;
+        [Tooltip("The AudioClip to play when the timer completes")] public AudioClip m_timerEndClip;
 
         private int m_startTime;
         private float m_currentTime;
@@ -57,12 +57,15 @@ namespace WatchApp
             {
                 WatchManager.InitButton(m_startButton, () =>
                 {
+                    // Get the timer values
                     m_timeHour = GetInputFieldInt(m_hourInputField);
                     m_timeMin = GetInputFieldInt(m_minInputField);
                     m_timeSec = GetInputFieldInt(m_secInputField);
 
+                    // Convert the timer values into seconds
                     m_startTime = GetTimeInSeconds();
 
+                    // Check if the input values were valid (above 0)
                     bool _validTimer = (m_timeHour + m_timeMin + m_timeSec) > 0;
 
                     if (m_timerSection && _validTimer)
@@ -71,6 +74,7 @@ namespace WatchApp
 
                         m_timerSection.SetActive(true);
 
+                        // Reset the input values
                         SetInputFieldText(m_hourInputField, string.Empty);
                         SetInputFieldText(m_minInputField, string.Empty);
                         SetInputFieldText(m_secInputField, string.Empty);
@@ -133,12 +137,15 @@ namespace WatchApp
 
                 m_timeSec -= Time.deltaTime;
 
+                // Display the time with some magic string formatting
+                // Format it to display as 06, 12 etc
                 if (m_timerText)
                 {
                     m_timerText.text = $"{m_timeHour.ToString("00")}:";
                     m_timerText.text += $"{m_timeMin.ToString("00")}";
                     m_timerText.text += StringUtil.SetColour($".{m_timeSec.ToString("00")}", Color.red);
                 }
+                // Update and interpolate the fill image
                 if (m_timerFillImage)
                 {
                     float _fillAmount = m_currentTime / (float)m_startTime;
@@ -148,6 +155,9 @@ namespace WatchApp
             }
         }
 
+        /// <summary>
+        /// Calculate the time, reduce hours to minutes and minutes to seconds when needed
+        /// </summary>
         void CalcTime()
         {
             if (m_timeSec <= 0.5f)
@@ -170,6 +180,9 @@ namespace WatchApp
             }
         }
 
+        /// <summary>
+        /// Close the timer UI and open the Input UI
+        /// </summary>
         public void CloseTimerUI()
         {
             if (m_timerSection)
@@ -182,6 +195,9 @@ namespace WatchApp
             }
         }
 
+        /// <summary>
+        /// When the timer completes, call this function
+        /// </summary>
         void TimerComplete()
         {
             if (m_trackingTimer)
@@ -190,6 +206,7 @@ namespace WatchApp
 
                 m_onTimerEndEvent.Invoke();
 
+                // Play a sound on completion
                 if (m_audioSource)
                 {
                     m_audioSource.PlayOneShot(m_timerEndClip);
@@ -197,11 +214,18 @@ namespace WatchApp
             }
         }
 
+        /// <summary>
+        /// Comvert the hours, minutes and seconds into pure seconds
+        /// </summary>
+        /// <returns></returns>
         int GetTimeInSeconds()
         {
             return (m_timeHour * 360) + (m_timeMin * 60) + (int)m_timeSec;
         }
 
+        /// <summary>
+        /// Reset the timer and associated values
+        /// </summary>
         public void ResetTimer()
         {
             m_timeHour = 0;
@@ -215,6 +239,11 @@ namespace WatchApp
             SetInputFieldText(m_secInputField, string.Empty);
         }
 
+        /// <summary>
+        /// Get the integer value from an InputField
+        /// </summary>
+        /// <param name="inputField">The InputField to get the integer from</param>
+        /// <returns></returns>
         public static int GetInputFieldInt(TMP_InputField inputField)
         {
             if (inputField == null)
@@ -229,6 +258,11 @@ namespace WatchApp
 
             return _result;
         }
+        /// <summary>
+        /// Set the text of an InputField
+        /// </summary>
+        /// <param name="inputField">InputField to update</param>
+        /// <param name="text">Text to update to</param>
         public static void SetInputFieldText(TMP_InputField inputField, string text)
         {
             if (inputField)
